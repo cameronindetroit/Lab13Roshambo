@@ -28,7 +28,8 @@ public class HumanPlayer extends Player {
 		case "SCISSORS":
 			return Roshambo.SCISSORS;
 		default:
-			return null;
+			System.out.println("Wrong input, try again");
+			return generateRoshambo();
 
 		}
 

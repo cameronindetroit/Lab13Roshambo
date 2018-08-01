@@ -11,6 +11,10 @@ public class RoshamboApp {
 		String randomComputer = "Kortana";
 		int opponent;
 		String playAgain = "yes";
+		// Wins and losses
+		// int wins = 0, losses = 0, ties = 0;
+		// double percentage;
+		// String input = null; //This string handles null answer
 
 		// Scanner
 		Scanner scnr = new Scanner(System.in);
@@ -62,7 +66,7 @@ public class RoshamboApp {
 				playAgain = Validator.YesOrNo(scnr, "Would you like to play again? (yes or no)");
 
 			} else if (opponent == 2) {
-				userInput = Validator.getString(scnr, "Rock, Paper, or Scissors?");
+				userInput = Validator.getStringExtended(scnr, "Rock, Paper, or Scissors?");
 
 				// Generate result
 				Roshambo humanChoice = player2.generateRoshambo();
