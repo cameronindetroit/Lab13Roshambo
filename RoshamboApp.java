@@ -6,26 +6,25 @@ public class RoshamboApp {
 
 	public static void main(String[] args) {
 		// Class variables
-		String rockPlayer = "Chris";
-		String randomPlayer = "Dave";
+		String userInput;
+		String rockComputer = "Siri";
+		String randomComputer = "Kortana";
 		int opponent;
-		String userInput = "";
 		String playAgain = "yes";
 
 		// Scanner
 		Scanner scnr = new Scanner(System.in);
 
 		// Welcome
-		System.out.println("Welcome to Rock Paper Scissors!");
+		System.out.print("Welcome to Rock, Paper, Scissor!\nEnter your name:");
 
 		// Ask Player to enter name
-		System.out.print("Enter you name: ");
 		String userName = Validator.getStringWithValidInformation(scnr, "");
 
 		// Set Players
-		RockPlayer player1 = new RockPlayer(rockPlayer);
+		RockPlayer player1 = new RockPlayer(rockComputer);
 		HumanPlayer player2 = new HumanPlayer(userName, scnr);
-		RandomPlayer player3 = new RandomPlayer(randomPlayer);
+		RandomPlayer player3 = new RandomPlayer(randomComputer);
 
 		do {
 
@@ -36,7 +35,7 @@ public class RoshamboApp {
 			// Conditional to choose opponent
 			if (opponent == 1) {
 
-				userInput = Validator.getString(scnr, " Player 1: Rock, Paper, or Scissors?");
+				userInput = Validator.getStringExtended(scnr, "Rock, Paper, or Scissors?");
 
 				// Generate result
 				Roshambo humanChoice = player2.generateRoshambo();
@@ -44,7 +43,7 @@ public class RoshamboApp {
 
 				// Print results to screen
 				System.out.println(userName + " Plays " + humanChoice);
-				System.out.println("The computer plays " + playerChoiceRock);
+				System.out.println(rockComputer + " plays " + playerChoiceRock);
 
 				if (humanChoice == Roshambo.PAPER && playerChoiceRock == Roshambo.ROCK) {
 
@@ -52,7 +51,7 @@ public class RoshamboApp {
 
 				} else if (humanChoice == Roshambo.SCISSORS && playerChoiceRock == Roshambo.ROCK) {
 
-					System.out.println("Sorry the computer beat you.");
+					System.out.println("Sorry" + rockComputer + " beat you.");
 
 				} else if (humanChoice == Roshambo.ROCK && playerChoiceRock == Roshambo.ROCK) {
 
@@ -63,7 +62,7 @@ public class RoshamboApp {
 				playAgain = Validator.YesOrNo(scnr, "Would you like to play again? (yes or no)");
 
 			} else if (opponent == 2) {
-				userInput = Validator.getString(scnr, "Player 2: Rock, Paper, or Scissors?");
+				userInput = Validator.getString(scnr, "Rock, Paper, or Scissors?");
 
 				// Generate result
 				Roshambo humanChoice = player2.generateRoshambo();
@@ -71,37 +70,41 @@ public class RoshamboApp {
 
 				// Print results
 				System.out.println(userName + " Plays " + humanChoice);
-				System.out.println("The other computer plays " + playerChoiceRandom);
+				System.out.println(randomComputer + " plays " + playerChoiceRandom);
 
 				if (humanChoice == Roshambo.PAPER && playerChoiceRandom == Roshambo.ROCK) {
 
 					System.out.println("You won!");
 
-				} else if (humanChoice == Roshambo.SCISSORS && playerChoiceRandom == Roshambo.ROCK) {
+				} else if (humanChoice == Roshambo.SCISSORS && playerChoiceRandom == Roshambo.PAPER) {
+					System.out.println("You won!");
 
-					System.out.println("Sorry the computer beat you.");
+				} else if (humanChoice == Roshambo.SCISSORS && playerChoiceRandom == Roshambo.PAPER) {
+
+					System.out.println("You won!");
 
 				} else if (humanChoice == Roshambo.ROCK && playerChoiceRandom == Roshambo.ROCK) {
 
 					System.out.println("Draw!");
 
-				} else if (humanChoice == Roshambo.SCISSORS && playerChoiceRandom == Roshambo.PAPER) {
-					System.out.println("You won!");
-
-				} else if (humanChoice == Roshambo.PAPER && playerChoiceRandom == Roshambo.SCISSORS) {
-					System.out.println("Sorry the computer beat you.");
-
 				} else if (humanChoice == Roshambo.PAPER && playerChoiceRandom == Roshambo.PAPER) {
 					System.out.println("Draw!");
+
+				} else if (humanChoice == Roshambo.SCISSORS && playerChoiceRandom == Roshambo.SCISSORS) {
+					System.out.println("Draw!");
+
+				} else {
+					System.out.println("Sorry" + randomComputer + " beat you.");
 
 				}
 
 				playAgain = Validator.YesOrNo(scnr, "Would you like to play again? (yes or no)");
+
 			}
+
 		} while (playAgain.toLowerCase().equals("yes"));
 
 		System.out.println("Exit Program");
 
 	}
-
 }

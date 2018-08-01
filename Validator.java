@@ -82,6 +82,25 @@ public class Validator {
 		return scnr.nextLine();
 	}
 
+	public static String getStringExtended(Scanner scnr, String prompt) {
+		// This approach uses exception handling.
+		System.out.print(prompt);
+		String input = scnr.nextLine();
+
+		if (!input.toLowerCase().equals(Roshambo.PAPER.toString().toLowerCase())
+				|| (input.toLowerCase().equals(Roshambo.ROCK.toString().toLowerCase())
+						|| (input.toLowerCase().equals(Roshambo.SCISSORS.toString().toLowerCase())))) {
+			return input;
+		} else {
+
+			System.out.println("Not valid input");
+			getStringExtended(scnr, prompt);
+		}
+
+		return input;
+
+	}
+
 	/*
 	 * Get String and also validate it's information
 	 */
